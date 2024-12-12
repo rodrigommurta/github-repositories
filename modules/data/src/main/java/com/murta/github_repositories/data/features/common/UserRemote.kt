@@ -2,7 +2,7 @@ package com.murta.github_repositories.data.features.common
 
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
-import com.murta.github_repositories.domain.features.pullrequests.model.User
+import com.murta.github_repositories.domain.features.common.User
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
