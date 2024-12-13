@@ -2,8 +2,10 @@ package com.murta.github_repositories.data.features.repositories.model
 
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
-import com.murta.github_repositories.data.features.common.UserRemote
-import com.murta.github_repositories.data.features.common.toDomain
+import com.murta.github_repositories.data.features.repositories.localdb.entities.RepositoryEntity
+import com.murta.github_repositories.data.features.user.UserRemote
+import com.murta.github_repositories.data.features.user.toDb
+import com.murta.github_repositories.data.features.user.toDomain
 import com.murta.github_repositories.domain.features.repositories.model.Repository
 import kotlinx.parcelize.Parcelize
 
@@ -29,3 +31,18 @@ fun RepositoryRemote.toDomain() = Repository(
     forksCount = forksCount,
     owner = owner.toDomain(),
 )
+
+fun RepositoryRemote.toDb() = RepositoryEntity(
+    id = id,
+    repositoryUrl = repositoryUrl,
+    pullsUrl = pullsUrl,
+    name = name,
+    description = description,
+    starsCount = starsCount,
+    forksCount = forksCount,
+    owner = owner.toDb(),
+)
+
+fun List<RepositoryRemote>.toDb() = this.map {
+    it.toDb()
+}

@@ -1,8 +1,9 @@
-package com.murta.github_repositories.data.features.common
+package com.murta.github_repositories.data.features.user
 
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
-import com.murta.github_repositories.domain.features.common.User
+import com.murta.github_repositories.data.features.user.localdb.entities.UserEntity
+import com.murta.github_repositories.domain.features.user.User
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
@@ -14,6 +15,13 @@ data class UserRemote(
 ) : Parcelable
 
 fun UserRemote.toDomain() = User(
+    id = id,
+    url = url,
+    name = name,
+    avatarUrl = avatarUrl,
+)
+
+fun UserRemote.toDb() = UserEntity(
     id = id,
     url = url,
     name = name,
