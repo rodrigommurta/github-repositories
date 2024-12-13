@@ -12,8 +12,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.murta.github_repositories.presentation.ui.navigation.RepositoriesRoute
+import com.murta.github_repositories.presentation.ui.navigation.pullRequestsGraph
+import com.murta.github_repositories.presentation.ui.navigation.repositoriesGraph
+import com.murta.github_repositories.presentation.ui.navigation.repositoriesScreen
 import com.murta.github_repositories.ui.theme.GitHubRepositoriesTheme
 
 class MainActivity : ComponentActivity() {
@@ -24,13 +27,23 @@ class MainActivity : ComponentActivity() {
             GitHubRepositoriesTheme {
                 val navController = rememberNavController()
 
-                NavHost(navController = navController, startDestination = "main") {
-                    composable("main") {
-                        Greeting(
-                            name = "Android",
-                            modifier = Modifier
-                        )
-                    }
+                NavHost(
+                    navController = navController,
+                    startDestination = RepositoriesRoute,
+                ) {
+                    repositoriesScreen(
+                        onRepositoryClicked = {
+                            navController.navigate(it)
+                        }
+                    )
+
+                    repositoriesGraph(
+                        onRepositoryClicked = {
+                            navController.navigate(it)
+                        }
+                    )
+
+                    pullRequestsGraph()
                 }
             }
         }
