@@ -41,8 +41,18 @@ dependencies {
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
     implementation(libs.gson)
+    implementation(libs.retrofit)
+//    implementation(libs.adapter.rxjava2)
+//    implementation(libs.converter.gson)
+//    implementation(platform(libs.okhttp.bom))
+//    implementation(libs.okhttp)
+//    implementation(libs.logging.interceptor)
+    implementation(libs.room.runtime)
+    implementation(libs.room.ktx)
+    kapt(libs.room.compiler)
 
     testImplementation(libs.junit)
+//    testImplementation(libs.mockwebserver)
 
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
