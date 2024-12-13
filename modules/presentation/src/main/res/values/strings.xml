@@ -1,0 +1,8 @@
+<resources>
+    <string name="error">Ocorreu um erro. Tente novamente.</string>
+    <string name="reload">Recarregar</string>
+
+    <string name="image_profile_description">Imagem do avatar de um usuário</string>
+    <string name="icon_fork_description">Ícone de branch do git</string>
+    <string name="icon_star_description">Ícone de estrela</string>
+</resources>
