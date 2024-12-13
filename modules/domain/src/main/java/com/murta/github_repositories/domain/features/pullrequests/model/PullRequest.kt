@@ -1,6 +1,6 @@
 package com.murta.github_repositories.domain.features.pullrequests.model
 
-import com.murta.github_repositories.domain.features.common.User
+import com.murta.github_repositories.domain.features.user.User
 import java.io.Serializable
 
 data class PullRequest(

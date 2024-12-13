@@ -1,6 +1,6 @@
 package com.murta.github_repositories.domain.features.repositories.model
 
-import com.murta.github_repositories.domain.features.common.User
+import com.murta.github_repositories.domain.features.user.User
 import java.io.Serializable
 
 data class Repository(

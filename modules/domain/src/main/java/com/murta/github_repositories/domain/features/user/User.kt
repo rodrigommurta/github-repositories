@@ -1,4 +1,4 @@
-package com.murta.github_repositories.domain.features.common
+package com.murta.github_repositories.domain.features.user
 
 import java.io.Serializable
 
