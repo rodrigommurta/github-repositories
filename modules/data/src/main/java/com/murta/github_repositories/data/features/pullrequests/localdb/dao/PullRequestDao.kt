@@ -12,7 +12,7 @@ interface PullRequestDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertAll(list: List<PullRequestEntity>)
 
-    @Query("SELECT * FROM pullRequest")
+    @Query("SELECT * FROM pullRequest ORDER BY created_at DESC")
     fun queryPullRequests(): Flow<List<PullRequestEntity>>
 
     @Query("DELETE FROM pullRequest")
