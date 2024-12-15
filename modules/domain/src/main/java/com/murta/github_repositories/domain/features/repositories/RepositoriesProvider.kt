@@ -5,5 +5,5 @@ import com.murta.github_repositories.domain.utils.State
 import kotlinx.coroutines.flow.Flow
 
 interface RepositoriesProvider {
-    suspend fun getScreen(): Flow<State<List<Repository>>>
+    suspend fun getScreen(pageCount: Int): Flow<State<List<Repository>>>
 }

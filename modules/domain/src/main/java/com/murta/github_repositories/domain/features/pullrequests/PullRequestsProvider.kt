@@ -5,5 +5,5 @@ import com.murta.github_repositories.domain.utils.State
 import kotlinx.coroutines.flow.Flow
 
 interface PullRequestsProvider {
-    suspend fun getScreen(pullRequestUrl: String): Flow<State<List<PullRequest>>>
+    suspend fun getScreen(param: String): Flow<State<List<PullRequest>>>
 }
