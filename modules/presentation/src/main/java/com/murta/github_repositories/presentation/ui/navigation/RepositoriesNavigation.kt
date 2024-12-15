@@ -1,42 +1,44 @@
 package com.murta.github_repositories.presentation.ui.navigation
 
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavGraphBuilder
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
-import androidx.navigation.compose.navigation
+import com.murta.github_repositories.presentation.di.daggerViewModel
+import com.murta.github_repositories.presentation.ui.features.repositories.RepositoriesViewModel
 import com.murta.github_repositories.presentation.ui.features.repositories.compose.RepositoriesScreenComposable
 import kotlinx.serialization.Serializable
 
 @Serializable
 object RepositoriesRoute
 
-@Serializable
-object RepositoriesGraph
-
-fun NavGraphBuilder.repositoriesGraph(
-    onRepositoryClicked: (PullRequestsRoute) -> Unit,
-) {
-    navigation<RepositoriesGraph>(
-        startDestination = RepositoriesRoute,
-    ) {
-        repositoriesScreen(
-            onRepositoryClicked = onRepositoryClicked
-        )
-    }
-}
-
 fun NavGraphBuilder.repositoriesScreen(
-    onRepositoryClicked: (PullRequestsRoute) -> Unit,
+    navController: NavHostController,
 ) {
     composable<RepositoriesRoute> {
+        val viewModel: RepositoriesViewModel = daggerViewModel()
+        val screen = viewModel.screen.collectAsStateWithLifecycle().value
+
         RepositoriesScreenComposable(
             modifier = Modifier
-                .fillMaxSize()
+                .fillMaxWidth()
+                .wrapContentHeight()
                 .padding(horizontal = 24.dp),
-            onRepositoryClicked = onRepositoryClicked
+            screen = screen,
+            onRepositoryClicked = { route ->
+                navController.navigate(route)
+            },
+            onBottomReached = {
+                viewModel.getData()
+            },
+            onFeedbackButtonClicked = {
+                viewModel.getData()
+            },
         )
     }
 }
