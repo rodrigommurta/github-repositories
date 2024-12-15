@@ -11,7 +11,7 @@ import com.murta.github_repositories.data.features.user.localdb.entities.UserTyp
 
 @Database(
     entities = [ RepositoryEntity::class],
-    version = 1,
+    version = 2,
     exportSchema = false
 )
 @TypeConverters(UserTypeConverters::class)

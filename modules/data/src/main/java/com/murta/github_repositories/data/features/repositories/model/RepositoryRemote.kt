@@ -10,11 +10,17 @@ import com.murta.github_repositories.domain.features.repositories.model.Reposito
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
+data class ItemsRemote(
+    @SerializedName("items") val items: List<RepositoryRemote>,
+) : Parcelable
+
+@Parcelize
 data class RepositoryRemote(
     @SerializedName("id") val id: Int,
     @SerializedName("url") val repositoryUrl: String,
     @SerializedName("pulls_url") val pullsUrl: String,
     @SerializedName("name") val name: String,
+    @SerializedName("full_name") val fullName: String,
     @SerializedName("description") val description: String,
     @SerializedName("stargazers_count") val starsCount: Int,
     @SerializedName("forks_count") val forksCount: Int,
@@ -26,6 +32,7 @@ fun RepositoryRemote.toDomain() = Repository(
     repositoryUrl = repositoryUrl,
     pullsUrl = pullsUrl,
     name = name,
+    fullName = fullName,
     description = description,
     starsCount = starsCount,
     forksCount = forksCount,
@@ -37,6 +44,7 @@ fun RepositoryRemote.toDb() = RepositoryEntity(
     repositoryUrl = repositoryUrl,
     pullsUrl = pullsUrl,
     name = name,
+    fullName = fullName,
     description = description,
     starsCount = starsCount,
     forksCount = forksCount,

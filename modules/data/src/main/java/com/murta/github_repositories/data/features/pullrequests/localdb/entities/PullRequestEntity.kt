@@ -10,11 +10,11 @@ import com.murta.github_repositories.domain.features.pullrequests.model.PullRequ
 @Entity(tableName = "pullRequest")
 data class PullRequestEntity(
     @PrimaryKey
-    @ColumnInfo(name = "id") val id: Int,
-    @ColumnInfo(name = "url") val url: String,
+    @ColumnInfo(name = "id") val id: Long,
+    @ColumnInfo(name = "html_url") val url: String,
     @ColumnInfo(name = "state") val state: String,
     @ColumnInfo(name = "title") val title: String,
-    @ColumnInfo(name = "body") val body: String,
+    @ColumnInfo(name = "body") val body: String?,
     @ColumnInfo(name = "created_at") val date: String,
     @ColumnInfo(name = "user") val user: UserEntity,
 )

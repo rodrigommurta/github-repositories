@@ -11,11 +11,11 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class PullRequestRemote(
-    @SerializedName("id") val id: Int,
-    @SerializedName("url") val url: String,
+    @SerializedName("id") val id: Long,
+    @SerializedName("html_url") val url: String,
     @SerializedName("state") val state: String,
     @SerializedName("title") val title: String,
-    @SerializedName("body") val body: String,
+    @SerializedName("body") val body: String?,
     @SerializedName("created_at") val date: String,
     @SerializedName("user") val user: UserRemote,
 ) : Parcelable

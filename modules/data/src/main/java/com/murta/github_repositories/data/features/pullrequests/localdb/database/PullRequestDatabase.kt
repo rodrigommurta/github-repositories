@@ -11,7 +11,7 @@ import com.murta.github_repositories.data.features.user.localdb.entities.UserTyp
 
 @Database(
     entities = [ PullRequestEntity::class],
-    version = 1,
+    version = 3,
     exportSchema = false
 )
 @TypeConverters(UserTypeConverters::class)
