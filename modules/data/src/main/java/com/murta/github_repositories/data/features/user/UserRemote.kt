@@ -9,7 +9,7 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class UserRemote(
     @SerializedName("id") val id: Int,
-    @SerializedName("url") val url: String,
+    @SerializedName("html_url") val url: String,
     @SerializedName("login") val name: String,
     @SerializedName("avatar_url") val avatarUrl: String,
 ) : Parcelable

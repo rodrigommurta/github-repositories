@@ -18,6 +18,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -35,6 +36,11 @@ import com.murta.github_repositories.domain.features.pullrequests.model.PullRequ
 import com.murta.github_repositories.presentation.ui.features.pullrequests.compose.fakedata.PullRequestComposableFakeData
 import com.murta.presentation.R
 
+const val TITLE_TAG = "titleTag"
+const val BODY_TAG = "bodyTag"
+const val AVATAR_TAG = "avatarTag"
+const val USER_NAME_TAG = "userNameTag"
+
 @Composable
 fun PullRequestComposable(
     modifier: Modifier = Modifier,
@@ -46,7 +52,7 @@ fun PullRequestComposable(
     ) {
 
         Text(
-            modifier = Modifier,
+            modifier = Modifier.testTag(TITLE_TAG),
             text = pullRequest.title,
             color = Color.Blue,
             fontSize = 20.sp,
@@ -57,7 +63,7 @@ fun PullRequestComposable(
 
         pullRequest.body?.let {
             Text(
-                modifier = Modifier,
+                modifier = Modifier.testTag(BODY_TAG),
                 text = it,
                 color = Color.Black,
                 fontSize = 14.sp,
@@ -77,8 +83,8 @@ fun PullRequestComposable(
             AsyncImage(
                 modifier = Modifier
                     .size(36.dp)
-                    .clip(CircleShape),
-//                    .testTag(IMAGE_TAG),
+                    .clip(CircleShape)
+                    .testTag(AVATAR_TAG),
                 model = ImageRequest.Builder(LocalContext.current)
                     .data(pullRequest.user.avatarUrl)
                     .memoryCachePolicy(CachePolicy.ENABLED)
@@ -90,7 +96,7 @@ fun PullRequestComposable(
             )
 
             Text(
-                modifier = Modifier,
+                modifier = Modifier.testTag(USER_NAME_TAG),
                 text = pullRequest.user.name,
                 color = Color.Blue,
                 fontSize = 14.sp,

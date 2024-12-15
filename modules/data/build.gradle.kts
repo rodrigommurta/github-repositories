@@ -56,7 +56,8 @@ dependencies {
     implementation(libs.rxandroid)
 
     testImplementation(libs.junit)
-//    testImplementation(libs.mockwebserver)
+    testImplementation(libs.mockwebserver)
+    testImplementation(libs.core.testing)
 
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

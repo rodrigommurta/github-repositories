@@ -20,6 +20,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -38,6 +39,13 @@ import com.murta.github_repositories.domain.features.repositories.model.Reposito
 import com.murta.github_repositories.presentation.ui.features.repositories.compose.fakedata.RepositoryComposableFakeData
 import com.murta.presentation.R
 
+const val TITLE_TAG = "titleTag"
+const val DESCRIPTION_TAG = "descriptionTag"
+const val FORKS_TAG = "forksTag"
+const val STARS_TAG = "starsTag"
+const val AVATAR_TAG = "avatarTag"
+const val OWNER_NAME_TAG = "ownerNameTag"
+
 @Composable
 fun RepositoryComposable(
     modifier: Modifier = Modifier,
@@ -52,7 +60,7 @@ fun RepositoryComposable(
     ) {
         Column {
             Text(
-                modifier = Modifier,
+                modifier = Modifier.testTag(TITLE_TAG),
                 text = repository.name,
                 color = Color.Blue,
                 fontSize = 20.sp,
@@ -60,7 +68,9 @@ fun RepositoryComposable(
             )
 
             Text(
-                modifier = Modifier.width(screenWidthDp.times(0.7f)),
+                modifier = Modifier
+                    .width(screenWidthDp.times(0.7f))
+                    .testTag(DESCRIPTION_TAG),
                 text = repository.description,
                 color = Color.Black,
                 fontSize = 14.sp,
@@ -79,7 +89,7 @@ fun RepositoryComposable(
                     tint = Color.DarkGray,
                 )
                 Text(
-                    modifier = Modifier,
+                    modifier = Modifier.testTag(FORKS_TAG),
                     text = repository.forksCount.toString(),
                     color = Color.Black,
                     fontSize = 20.sp,
@@ -96,7 +106,7 @@ fun RepositoryComposable(
                 )
 
                 Text(
-                    modifier = Modifier,
+                    modifier = Modifier.testTag(STARS_TAG),
                     text = repository.starsCount.toString(),
                     color = Color.Black,
                     fontSize = 20.sp,
@@ -112,8 +122,8 @@ fun RepositoryComposable(
             AsyncImage(
                 modifier = Modifier
                     .size(56.dp)
-                    .clip(CircleShape),
-//                    .testTag(IMAGE_TAG),
+                    .clip(CircleShape)
+                    .testTag(AVATAR_TAG),
                 model = ImageRequest.Builder(LocalContext.current)
                     .data(repository.owner.avatarUrl)
                     .memoryCachePolicy(CachePolicy.ENABLED)
@@ -125,7 +135,9 @@ fun RepositoryComposable(
             )
 
             Text(
-                modifier = Modifier.width(56.dp),
+                modifier = Modifier
+                    .width(56.dp)
+                    .testTag(OWNER_NAME_TAG),
                 text = repository.owner.name,
                 textAlign = TextAlign.Center,
                 color = Color.Blue,
