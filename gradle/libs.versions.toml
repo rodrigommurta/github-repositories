@@ -5,6 +5,7 @@ coreKtx = "1.13.1"
 junit = "4.13.2"
 junitVersion = "1.2.1"
 espressoCore = "3.6.1"
+kotlinxMetadataJvmVersion = "0.4.2"
 lifecycleRuntimeKtx = "2.8.7"
 activityCompose = "1.9.3"
 composeBom = "2024.12.01"
@@ -14,17 +15,20 @@ jetbrainsKotlinJvm = "2.0.0"
 composeNavigation = "2.8.5"
 gsonVersion = "2.10.1"
 coroutinesVersion = "1.9.0"
-retrofitVersion = '2.9.0'
-okhttpVersion = '4.12.0'
+retrofitVersion = "2.9.0"
+okhttpVersion = "4.12.0"
+rxjavaVersion = "2.2.21"
+rxandroidVersion = "2.1.1"
 roomVersion = "2.6.1"
 coilVersion = "3.0.2"
 uiTooling = "1.7.6"
-pluginSerializationVersion = "2.1.0"
+pluginSerializationVersion = "2.0.0"
 serializationVersion = "1.7.3"
-daggerVersion = "2.28.3"
+daggerVersion = "2.53.1"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+jetbrains-kotlinx-metadata-jvm = { group = "org.jetbrains.kotlinx", name = "kotlinx-metadata-jvm", version.ref = "kotlinxMetadataJvmVersion" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
@@ -52,21 +56,23 @@ converter-gson = { group = "com.squareup.retrofit2", name = "converter-gson", ve
 okhttp-bom = { group = "com.squareup.okhttp3", name = "okhttp-bom", version.ref = "okhttpVersion" }
 okhttp = { group = "com.squareup.okhttp3", name = "okhttp" }
 logging-interceptor = { group = "com.squareup.okhttp3", name = "logging-interceptor" }
+rxjava = { group = "io.reactivex.rxjava2", name = "rxjava", version.ref = "rxjavaVersion" }
+rxandroid = { group = "io.reactivex.rxjava2", name = "rxandroid", version.ref = "rxandroidVersion" }
 mockwebserver = { group = "com.squareup.okhttp3", name = "mockwebserver" }
 room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "roomVersion" }
 room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "roomVersion" }
 room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "roomVersion" }
-coil-compose = { group = "io.coil-kt.coil3", name = "coil-compose", version.ref = "coilVersion"}
-coil-network-okhttp = { group = "io.coil-kt.coil3", name = "coil-network-okhttp", version.ref = "coilVersion"}
+coil-compose = { group = "io.coil-kt.coil3", name = "coil-compose", version.ref = "coilVersion" }
+coil-network-okhttp = { group = "io.coil-kt.coil3", name = "coil-network-okhttp", version.ref = "coilVersion" }
 ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling", version.ref = "uiTooling" }
-dagger = { group = "com.google.dagger", name = "dagger", version.ref = "daggerVersion"}
-dagger-compiler = { group = "com.google.dagger", name = "dagger-compiler", version.ref = "daggerVersion"}
+dagger = { group = "com.google.dagger", name = "dagger", version.ref = "daggerVersion" }
+dagger-compiler = { group = "com.google.dagger", name = "dagger-compiler", version.ref = "daggerVersion" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
-kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "pluginSerializationVersion"}
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "pluginSerializationVersion" }
 android-library = { id = "com.android.library", version.ref = "agp" }
 jetbrains-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "jetbrainsKotlinJvm" }
 kotlin-parcelize = { id = "kotlin-parcelize" }
