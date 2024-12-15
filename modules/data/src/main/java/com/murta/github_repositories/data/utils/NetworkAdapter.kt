@@ -1,5 +1,6 @@
-package com.murta.github_repositories.data.features.utils
+package com.murta.github_repositories.data.utils
 
+import android.util.Log
 import com.murta.github_repositories.domain.utils.State
 import com.murta.github_repositories.domain.utils.toErrorInformation
 import kotlinx.coroutines.flow.Flow
@@ -18,12 +19,12 @@ inline fun <Result, Request> networkAdapter(
         data = query().first()
 
     } catch (error: Exception) {
+        Log.e("okhttp_error", error.localizedMessage, error)
+
         emit(
             State.Error(
                 data,
-                error.toErrorInformation(
-                    "Não foi possível conectar ao servidor. Exibindo dados em cache."
-                ),
+                error.toErrorInformation(),
             )
         )
     }
