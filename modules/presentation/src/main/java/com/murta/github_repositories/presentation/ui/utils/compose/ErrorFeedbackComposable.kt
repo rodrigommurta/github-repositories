@@ -13,15 +13,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.testTag
-import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.murta.github_repositories.presentation.ui.utils.DummyFeedbackListener
-import com.murta.github_repositories.presentation.ui.utils.FeedbackListener
 import com.murta.presentation.R
 
 const val ERROR_TEXT_TAG = "errorText"
@@ -32,7 +29,7 @@ fun ErrorFeedbackComposable(
     modifier: Modifier = Modifier,
     errorMessage: String = stringResource(R.string.error),
     buttonTitle: String = stringResource(R.string.reload),
-//    listener: FeedbackListener,
+    onFeedbackButtonClicked: () -> Unit,
 ) {
     Column(
         modifier = modifier,
@@ -59,8 +56,7 @@ fun ErrorFeedbackComposable(
             ),
             shape = RoundedCornerShape(8.dp),
             onClick = {
-//                listener.onButtonClicked()
-                TODO()
+                onFeedbackButtonClicked()
             },
         ) {
             Text(
@@ -77,6 +73,6 @@ fun ErrorFeedbackComposable(
 private fun ErrorFeedbackComposablePreview() {
     ErrorFeedbackComposable(
         modifier = Modifier.fillMaxSize(),
-//        listener = DummyFeedbackListener
+        onFeedbackButtonClicked = {}
     )
 }

@@ -7,7 +7,7 @@ import com.murta.github_repositories.domain.features.user.User
 import com.murta.github_repositories.domain.utils.ErrorInformation
 import com.murta.github_repositories.domain.utils.State
 
-fun pullRequestFakeData(id: Int): PullRequest {
+fun pullRequestFakeData(id: Long): PullRequest {
     return PullRequest(
         id = id,
         url = "https://api.github.com/repos/JetBrains/kotlin/pulls/5386",
@@ -26,7 +26,7 @@ fun pullRequestFakeData(id: Int): PullRequest {
 
 class PullRequestsScreenComposableFakeData : PreviewParameterProvider<PullRequestsScreen> {
     private fun listPullRequests(size: Int): List<PullRequest> = List(size) { index ->
-        pullRequestFakeData(index)
+        pullRequestFakeData(index.toLong())
     }
 
     private val successScreen = PullRequestsScreen(

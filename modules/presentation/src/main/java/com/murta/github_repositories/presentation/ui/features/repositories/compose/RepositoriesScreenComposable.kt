@@ -2,19 +2,14 @@ package com.murta.github_repositories.presentation.ui.features.repositories.comp
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
@@ -30,7 +25,8 @@ import com.murta.github_repositories.domain.features.repositories.model.Reposito
 import com.murta.github_repositories.domain.utils.State
 import com.murta.github_repositories.presentation.ui.features.repositories.compose.fakedata.RepositoriesScreenComposableFakeData
 import com.murta.github_repositories.presentation.ui.navigation.PullRequestsRoute
-import com.murta.github_repositories.presentation.ui.utils.compose.ErrorFeedbackComposable
+import com.murta.github_repositories.presentation.ui.utils.compose.BaseScreenComposable
+import com.murta.github_repositories.presentation.ui.utils.compose.EndlessListComposable
 
 @Composable
 @OptIn(ExperimentalMaterial3Api::class)
@@ -38,9 +34,16 @@ fun RepositoriesScreenComposable(
     modifier: Modifier = Modifier,
     screen: RepositoriesScreen = RepositoriesScreen(),
     onRepositoryClicked: (PullRequestsRoute) -> Unit,
-//    listener: RepositoriesListener
+    onBottomReached: () -> Unit,
+    onFeedbackButtonClicked: () -> Unit,
 ) {
-    Scaffold(
+    val hasCache = !screen.repositories.isNullOrEmpty()
+
+    BaseScreenComposable(
+        modifier = Modifier.fillMaxSize(),
+        screenState = screen.state,
+        hasCache = hasCache,
+        onFeedbackButtonClicked = onFeedbackButtonClicked,
         topBar = {
             CenterAlignedTopAppBar(
                 title = {
@@ -53,68 +56,49 @@ fun RepositoriesScreenComposable(
                     )
                 },
                 colors = TopAppBarDefaults.centerAlignedTopAppBarColors().copy(
-                    containerColor = Color.Blue
+                    containerColor = Color.DarkGray
                 )
             )
-        },
-    ) { innerPadding ->
-        Column(modifier = Modifier.padding(innerPadding)) {
-            val errorWithoutCache = screen.state.isError && screen.repositories.isNullOrEmpty()
-
-            if (errorWithoutCache) {
-                val state = screen.state as State.Error
-                ErrorFeedbackComposable(
+        }
+    ) {
+        Column {
+            screen.repositories?.let { repositories ->
+                EndlessListComposable(
                     modifier = modifier,
-//                    .testTag(ERROR_TAG),
-                    errorMessage = state.error.message.orEmpty(),
-//                    listener = listener,
-                )
-            } else if (screen.state is State.Loading) {
-                Column(modifier = modifier) {
-                    Spacer(modifier = Modifier.weight(1f))
+                    list = repositories,
+                    onBottomReached = onBottomReached,
+                    content = { index ->
+                        val item = repositories[index]
 
-                    CircularProgressIndicator(
-                        modifier = Modifier
-                            .size(48.dp)
-                            .align(Alignment.CenterHorizontally),
-//                        .testTag(LOADING_IMAGE_TAG),
-                        color = Color.Blue
-                    )
-
-                    Spacer(modifier = Modifier.weight(1f))
-                }
-            } else {
-                screen.repositories?.let { repositories ->
-                    Column(
-                        modifier = modifier
-                            .verticalScroll(rememberScrollState())
-                    ) {
-                        Spacer(modifier = Modifier.height(24.dp))
-
-                        repositories.forEachIndexed { index, repository ->
-                            RepositoryComposable(
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .clickable {
-//                                        listener.onRepositoryClicked(repository)
-                                        onRepositoryClicked(
-                                            PullRequestsRoute(
-                                                title = repository.name,
-                                                pullsUrl = repository.pullsUrl
-                                            )
+                        RepositoryComposable(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(vertical = 16.dp)
+                                .clickable {
+                                    onRepositoryClicked(
+                                        PullRequestsRoute(
+                                            title = item.name,
+                                            fullName = item.fullName
                                         )
-                                    },
-                                repository = repository,
-                            )
+                                    )
+                                },
+                            repository = item,
+                        )
 
-                            if (index < repositories.lastIndex) {
-                                Spacer(modifier = Modifier.height(16.dp))
-                                HorizontalDivider()
-                                Spacer(modifier = Modifier.height(16.dp))
-                            }
+                        if (index < repositories.lastIndex) {
+                            HorizontalDivider()
+                        } else if (screen.state is State.Loading) {
+                            CircularProgressIndicator(
+                                modifier = Modifier
+                                    .size(48.dp)
+                                    .align(Alignment.CenterHorizontally)
+                                    .padding(vertical = 12.dp),
+//                        .testTag(LOADING_IMAGE_TAG),
+                                color = Color.Blue
+                            )
                         }
                     }
-                }
+                )
             }
         }
     }
@@ -130,7 +114,8 @@ fun RepositoriesScreenComposablePreview(
             .fillMaxSize()
             .padding(horizontal = 24.dp),
         screen = screen,
-        onRepositoryClicked = {}
-//        listener = DummyRepositoriesListener
+        onRepositoryClicked = {},
+        onBottomReached = {},
+        onFeedbackButtonClicked = {},
     )
 }

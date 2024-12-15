@@ -5,4 +5,5 @@
     <string name="image_profile_description">Imagem do avatar de um usuário</string>
     <string name="icon_fork_description">Ícone de branch do git</string>
     <string name="icon_star_description">Ícone de estrela</string>
+    <string name="icon_arrow_back_description">Ícone de voltar</string>
 </resources>

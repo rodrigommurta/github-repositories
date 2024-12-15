@@ -1,7 +1,6 @@
 package com.murta.github_repositories.presentation.ui.features.repositories.compose
 
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Arrangement.spacedBy
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -19,10 +18,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
@@ -41,9 +43,12 @@ fun RepositoryComposable(
     modifier: Modifier = Modifier,
     repository: Repository,
 ) {
+    val screenWidthDp = LocalConfiguration.current.screenWidthDp.dp
+
     Row(
         modifier = modifier,
-        horizontalArrangement = Arrangement.SpaceBetween
+        horizontalArrangement = Arrangement.SpaceBetween,
+        verticalAlignment = Alignment.CenterVertically,
     ) {
         Column {
             Text(
@@ -53,12 +58,15 @@ fun RepositoryComposable(
                 fontSize = 20.sp,
                 fontWeight = FontWeight.Bold,
             )
+
             Text(
-                modifier = Modifier,
+                modifier = Modifier.width(screenWidthDp.times(0.7f)),
                 text = repository.description,
                 color = Color.Black,
                 fontSize = 14.sp,
                 fontWeight = FontWeight.Bold,
+                maxLines = 2,
+                overflow = TextOverflow.Ellipsis,
             )
 
             Spacer(modifier = Modifier.height(8.dp))
@@ -68,7 +76,7 @@ fun RepositoryComposable(
                     modifier = Modifier.align(Alignment.CenterVertically),
                     painter = painterResource(R.drawable.ic_git_fork),
                     contentDescription = stringResource(R.string.icon_fork_description),
-                    tint = Color.Yellow,
+                    tint = Color.DarkGray,
                 )
                 Text(
                     modifier = Modifier,
@@ -84,7 +92,7 @@ fun RepositoryComposable(
                     modifier = Modifier.align(Alignment.CenterVertically),
                     painter = painterResource(R.drawable.ic_git_star),
                     contentDescription = stringResource(R.string.icon_star_description),
-                    tint = Color.Yellow,
+                    tint = Color.DarkGray,
                 )
 
                 Text(
@@ -97,10 +105,13 @@ fun RepositoryComposable(
             }
         }
 
-        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
+        ) {
             AsyncImage(
                 modifier = Modifier
-                    .size(52.dp)
+                    .size(56.dp)
                     .clip(CircleShape),
 //                    .testTag(IMAGE_TAG),
                 model = ImageRequest.Builder(LocalContext.current)
@@ -114,11 +125,14 @@ fun RepositoryComposable(
             )
 
             Text(
-                modifier = Modifier,
+                modifier = Modifier.width(56.dp),
                 text = repository.owner.name,
+                textAlign = TextAlign.Center,
                 color = Color.Blue,
                 fontSize = 14.sp,
                 fontWeight = FontWeight.Bold,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis,
             )
         }
     }

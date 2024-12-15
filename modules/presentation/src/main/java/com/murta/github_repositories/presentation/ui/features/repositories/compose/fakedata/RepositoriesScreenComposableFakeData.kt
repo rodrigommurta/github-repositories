@@ -13,6 +13,7 @@ fun repositoryFakeData(id: Int): Repository {
         repositoryUrl = "https://api.github.com/repos/JetBrains/kotlin",
         pullsUrl = "https://api.github.com/repos/JetBrains/kotlin/pulls",
         name = "kotlin",
+        fullName = "JetBrains/kotlin",
         description = "The Kotlin Programming Language. ",
         starsCount = 49565,
         forksCount = 5797,
