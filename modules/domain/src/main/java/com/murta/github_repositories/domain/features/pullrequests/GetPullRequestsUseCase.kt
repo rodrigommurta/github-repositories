@@ -6,21 +6,31 @@ import com.murta.github_repositories.domain.utils.UseCase
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.flow.flow
+import javax.inject.Inject
 
-class GetPullRequestsUseCase(
+class GetPullRequestsUseCase @Inject constructor(
     private val provider: PullRequestsProvider,
 ) : UseCase<String, PullRequestsScreen>() {
     override suspend fun execute(
-        param: String?,
+        params: Map<String, String>?,
         currentState: PullRequestsScreen
     ): Flow<PullRequestsScreen> = flow {
-        emit(currentState.copy(state = State.Loading()))
+        val title = params?.get("title").orEmpty()
+        val param = params?.get("fullName").orEmpty()
 
-        when (val result = provider.getScreen(param.orEmpty()).firstOrNull()) {
+        emit(
+            currentState.copy(
+                state = State.Loading(),
+                title = title
+            )
+        )
+
+        when (val result = provider.getScreen(param).firstOrNull()) {
             is State.Success -> {
                 emit(
                     currentState.copy(
                         state = State.Success(data = result.data),
+                        title = title,
                         pullRequests = result.data,
                     )
                 )
@@ -30,6 +40,7 @@ class GetPullRequestsUseCase(
                 emit(
                     currentState.copy(
                         state = State.Error(data = result.data, error = result.error),
+                        title = title,
                         pullRequests = result.data,
                     )
                 )

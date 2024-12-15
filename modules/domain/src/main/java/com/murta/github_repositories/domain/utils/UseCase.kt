@@ -4,12 +4,12 @@ import kotlinx.coroutines.flow.Flow
 
 abstract class UseCase<K, T> {
     abstract suspend fun execute(
-        param: K?,
+        params: Map<K, K>?,
         currentState: T,
     ): Flow<T>
 
     suspend operator fun invoke(
-        param: K?,
+        params: Map<K, K>?,
         currentState: T
-    ) = execute(param, currentState)
+    ) = execute(params, currentState)
 }
