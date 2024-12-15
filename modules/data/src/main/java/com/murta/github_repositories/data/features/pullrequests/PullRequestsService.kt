@@ -5,9 +5,9 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 
 interface PullRequestsService {
-    @GET("{endpoint}")
+    @GET("repos/{param}/pulls")
     suspend fun getPullRequests(
-        @Path("endpoint")
-        endpoint: String
+        @Path("param", encoded = true)
+        param: String
     ): List<PullRequestRemote>
 }

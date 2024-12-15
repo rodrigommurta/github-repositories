@@ -1,13 +1,13 @@
 package com.murta.github_repositories.data.features.repositories
 
-import com.murta.github_repositories.data.features.repositories.model.RepositoryRemote
+import com.murta.github_repositories.data.features.repositories.model.ItemsRemote
 import retrofit2.http.GET
-import retrofit2.http.Path
+import retrofit2.http.QueryMap
 
 interface RepositoriesService {
-    @GET("{endpoint}")
+    @GET("search/repositories")
     suspend fun getRepositories(
-        @Path("endpoint")
-        endpoint: String
-    ): List<RepositoryRemote>
+        @QueryMap
+        endpoint: Map<String, String>,
+    ): ItemsRemote
 }
