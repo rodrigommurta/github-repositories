@@ -136,16 +136,16 @@ LinkedIn: [https://www.linkedin.com/in/rodrigomurta/](https://www.linkedin.com/i
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
-[diagram-arch]: images/diagram_arch.png
+[diagram-arch]: images/diagram_arch.webp
 
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 
 [linkedin-url]: https://linkedin.com/in/rodrigomurta
 
-[repositories-loading]: images/repositories-loading.png
+[repositories-loading]: images/repositories-loading.webp
 
-[repositories-success]: images/repositories-success.png
+[repositories-success]: images/repositories-success.webp
 
-[product-loading]: images/pullrequests-loading.png
+[product-loading]: images/pullrequests-loading.webp
 
-[pullrequests-success]: images/pullrequests-success.png
+[pullrequests-success]: images/pullrequests-success.webp
