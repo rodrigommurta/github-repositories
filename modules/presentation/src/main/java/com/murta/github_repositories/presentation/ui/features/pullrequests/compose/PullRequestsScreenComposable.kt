@@ -71,7 +71,8 @@ fun PullRequestsScreenComposable(
                     ) {
                         Icon(
                             imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                            contentDescription = stringResource(R.string.icon_arrow_back_description)
+                            contentDescription = stringResource(R.string.icon_arrow_back_description),
+                            tint = Color.White
                         )
                     }
                 }
