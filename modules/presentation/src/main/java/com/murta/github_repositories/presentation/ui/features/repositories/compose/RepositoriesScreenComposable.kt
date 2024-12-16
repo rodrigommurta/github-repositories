@@ -93,7 +93,6 @@ fun RepositoriesScreenComposable(
                                     .size(48.dp)
                                     .align(Alignment.CenterHorizontally)
                                     .padding(vertical = 12.dp),
-//                        .testTag(LOADING_IMAGE_TAG),
                                 color = Color.Blue
                             )
                         }

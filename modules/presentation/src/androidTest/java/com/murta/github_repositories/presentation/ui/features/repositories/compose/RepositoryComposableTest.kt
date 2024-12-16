@@ -11,8 +11,8 @@ import org.junit.Rule
 import org.junit.Test
 
 class RepositoryComposableTest {
-@get:Rule
-val composeTestRule = createComposeRule()
+    @get:Rule
+    val composeTestRule = createComposeRule()
 
     @Test
     fun repositoryComposableTest() {

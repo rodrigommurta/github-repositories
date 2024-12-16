@@ -115,7 +115,6 @@ fun PullRequestsScreenComposable(
                                     .size(48.dp)
                                     .align(Alignment.CenterHorizontally)
                                     .padding(vertical = 24.dp),
-//                        .testTag(LOADING_IMAGE_TAG),
                                 color = Color.Blue
                             )
                         }
@@ -124,88 +123,6 @@ fun PullRequestsScreenComposable(
             }
         }
     }
-//    Scaffold(
-//        modifier = Modifier.fillMaxSize(),
-//        topBar = {
-//            CenterAlignedTopAppBar(
-//                title = {
-//                    Text(
-//                        modifier = Modifier,
-//                        text = screen.title,
-//                        color = Color.White,
-//                        fontSize = 20.sp,
-//                        fontWeight = FontWeight.Bold,
-//                    )
-//                },
-//                colors = TopAppBarDefaults.centerAlignedTopAppBarColors().copy(
-//                    containerColor = Color.DarkGray
-//                )
-//            )
-//        },
-//    ) { innerPadding ->
-//        Column(
-//            modifier = Modifier
-//                .fillMaxSize()
-//                .padding(innerPadding)
-//        ) {
-//            val errorWithoutCache = screen.state.isError && screen.pullRequests.isNullOrEmpty()
-//
-//            if (errorWithoutCache) {
-//                val state = screen.state as State.Error
-//                ErrorFeedbackComposable(
-//                    modifier = modifier,
-////                    .testTag(ERROR_TAG),
-//                    errorMessage = state.error.message.orEmpty(),
-//                    onFeedbackButtonClicked = { onFeedbackButtonClicked() }
-//                )
-//            } else {
-//                screen.pullRequests?.let { pullRequests ->
-//                    EndlessList(
-//                        modifier = modifier,
-//                        list = pullRequests,
-//                        onBottomReached = onBottomReached,
-//                        content = { index ->
-//                            val item = pullRequests[index]
-//
-//                            PullRequestComposable(
-//                                modifier = Modifier
-//                                    .fillMaxWidth()
-//                                    .padding(vertical = 16.dp)
-//                                    .clickable {
-//                                        onPullRequestClicked(item.url)
-//                                    },
-//                                pullRequest = item,
-//                            )
-//
-//                            if (index < pullRequests.lastIndex) {
-//                                HorizontalDivider()
-//                            } else if (screen.state is State.Loading) {
-//                                CircularProgressIndicator(
-//                                    modifier = Modifier
-//                                        .size(48.dp)
-//                                        .align(Alignment.CenterHorizontally)
-//                                        .padding(vertical = 24.dp),
-////                        .testTag(LOADING_IMAGE_TAG),
-//                                    color = Color.Blue
-//                                )
-//                            }
-//                        }
-//                    )
-//                }
-//
-//                if (screen.state is State.Loading) {
-//                    CircularProgressIndicator(
-//                        modifier = Modifier
-//                            .size(48.dp)
-//                            .align(Alignment.CenterHorizontally)
-//                            .padding(vertical = 24.dp),
-////                        .testTag(LOADING_IMAGE_TAG),
-//                        color = Color.Blue
-//                    )
-//                }
-//            }
-//        }
-//    }
 }
 
 @Composable
