@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.parcelize)
     alias(libs.plugins.kotlin.kapt)
+    alias(libs.plugins.detekt)
 }
 
 android {
@@ -32,6 +33,27 @@ android {
     kotlinOptions {
         jvmTarget = "17"
     }
+
+    lint {
+        abortOnError = true
+        warningsAsErrors = true
+        checkReleaseBuilds = false
+        checkDependencies = true
+        disable.add("UnusedResources")
+        enable.add("ObsoleteSdkInt")
+        lintConfig = file("lint.xml")
+    }
+}
+
+detekt {
+    config = files("$rootDir/config/detekt/detekt.yml")
+    buildUponDefaultConfig = true
+    allRules = false
+    autoCorrect = true
+}
+
+tasks.named("check") {
+    dependsOn("detekt")
 }
 
 dependencies {

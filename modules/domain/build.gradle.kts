@@ -3,6 +3,7 @@ plugins {
     id("kotlin")
     alias(libs.plugins.jetbrains.kotlin.jvm)
     alias(libs.plugins.kotlin.kapt)
+    alias(libs.plugins.detekt)
 }
 
 java {
@@ -14,6 +15,17 @@ kotlin {
     compilerOptions {
         jvmTarget = org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17
     }
+}
+
+detekt {
+    config = files("$rootDir/config/detekt/detekt.yml")
+    buildUponDefaultConfig = true
+    allRules = false
+    autoCorrect = true
+}
+
+tasks.named("check") {
+    dependsOn("detekt")
 }
 
 dependencies {
