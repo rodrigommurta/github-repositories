@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.kotlin.kapt)
+    alias(libs.plugins.detekt)
 }
 
 android {
@@ -40,6 +41,26 @@ android {
     buildFeatures {
         compose = true
     }
+
+    lint {
+        abortOnError = false
+        warningsAsErrors = true
+        checkReleaseBuilds = false
+        disable.add("UnusedResources")
+        enable.add("ObsoleteSdkInt")
+        lintConfig = file("lint.xml")
+    }
+}
+
+detekt {
+    config = files("$rootDir/config/detekt/detekt.yml")
+    buildUponDefaultConfig = true
+    allRules = false
+    autoCorrect = true
+}
+
+tasks.named("check") {
+    dependsOn("detekt")
 }
 
 dependencies {
@@ -68,6 +89,7 @@ dependencies {
     testImplementation(libs.core.testing)
     testImplementation(libs.android.core.testing)
     testImplementation(libs.mockito.kotlin)
+    testImplementation(libs.mockito)
 
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

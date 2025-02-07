@@ -27,6 +27,8 @@ daggerVersion = "2.53.1"
 coreTestingVersion = "2.2.0"
 androidCoreTestingVersion = "1.1.1"
 mockitoKotlinVersion = "2.2.0"
+mockito = "3.11.2"
+detekt = "1.23.1"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -72,6 +74,7 @@ dagger-compiler = { group = "com.google.dagger", name = "dagger-compiler", versi
 core-testing = { group = "androidx.arch.core", name = "core-testing", version.ref = "coreTestingVersion" }
 android-core-testing = { group = "android.arch.core", name = "core-testing", version.ref = "androidCoreTestingVersion" }
 mockito-kotlin = { group = "com.nhaarman.mockitokotlin2", name = "mockito-kotlin", version.ref = "mockitoKotlinVersion"}
+mockito = {group = "org.mockito", name = "mockito-core", version.ref = "mockito" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
@@ -82,3 +85,5 @@ android-library = { id = "com.android.library", version.ref = "agp" }
 jetbrains-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "jetbrainsKotlinJvm" }
 kotlin-parcelize = { id = "kotlin-parcelize" }
 kotlin-kapt = { id = "kotlin-kapt" }
+detekt =  { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
+
