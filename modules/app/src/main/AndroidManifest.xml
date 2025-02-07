@@ -16,7 +16,7 @@
         android:theme="@style/Theme.Githubrepositories"
         tools:targetApi="31">
         <activity
-            android:name="com.murta.github_repositories.MainActivity"
+            android:name="com.murta.githubrepositories.MainActivity"
             android:exported="true"
             android:theme="@style/Theme.Githubrepositories">
             <intent-filter>
